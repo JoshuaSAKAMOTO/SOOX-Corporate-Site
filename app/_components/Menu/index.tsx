@@ -15,9 +15,9 @@ export default function Menu() {
           isOpen
             ? 'block fixed top-0 left-0 right-0 bottom-0 bg-[#333] text-white p-6 md:p-6'
             : 'hidden'
-        } md:block md:relative md:bg-transparent md:p-0 md:pr-4`}
+        } md:block md:relative md:bg-transparent md:p-0`}
       >
-        <ul className="flex flex-col gap-6 text-white text-xl md:flex-row md:gap-10 md:text-2xl md:pr-6">
+        <ul className="flex flex-col gap-6 text-white text-xl md:flex-row md:gap-10 md:text-2xl">
           <li>
             <Link href="/about" onClick={close} className="hover:opacity-70 transition-opacity">
               About

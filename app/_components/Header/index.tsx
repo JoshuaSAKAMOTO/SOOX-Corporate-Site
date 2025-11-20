@@ -4,7 +4,10 @@ import Link from 'next/link';
 
 export default function Header() {
   return (
-    <header className="absolute top-0 left-0 right-0 z-[1000] flex items-center justify-between px-6 py-6 md:px-10 md:py-8">
+    <header
+      className="absolute top-0 left-0 right-0 z-[1000] flex items-center justify-between"
+      style={{ paddingLeft: '1.5rem', paddingRight: '3rem', paddingTop: '0', paddingBottom: '0' }}
+    >
       <Link href="/" className="flex items-center">
         <Image
           src="/logo-white.png"
