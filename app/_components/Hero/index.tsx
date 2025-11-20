@@ -16,7 +16,7 @@ export default function Hero({ title, sub }: Props) {
       </div>
       <Image
         className="absolute top-0 right-0 h-[600px] w-full object-cover object-right -z-10"
-        src="/img-mv.jpg"
+        src="/IMG_6701.JPG"
         alt=""
         width={4000}
         height={1200}

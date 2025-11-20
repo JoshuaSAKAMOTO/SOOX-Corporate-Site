@@ -8,7 +8,7 @@ export default async function Page() {
       <section className="relative flex items-center justify-center h-screen min-h-[600px] overflow-hidden">
         <Image
           className="absolute inset-0 w-full h-full object-cover object-center"
-          src="/img-mv.jpg"
+          src="/IMG_6701.JPG"
           alt=""
           width={3600}
           height={1200}
