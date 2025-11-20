@@ -1,14 +1,7 @@
 import Image from 'next/image';
-import { getNewsList } from '@/app/_libs/microcms';
-import { TOP_NEWS_LIMIT } from '@/app/_constants';
-import NewsList from '@/app/_components/NewsList';
 import ButtonLink from '@/app/_components/ButtonLink';
 
 export default async function Page() {
-  const data = await getNewsList({
-    limit: TOP_NEWS_LIMIT,
-  });
-
   return (
     <>
       {/* Hero Section - Large Photo Display */}
@@ -51,7 +44,8 @@ export default async function Page() {
         </div>
       </section>
 
-      {/* News Section */}
+      {/* News Section - Temporarily disabled until microCMS is configured */}
+      {/*
       <section className="py-20 md:py-32 bg-[#f9f9f9]">
         <div className="max-w-5xl mx-auto px-6">
           <div className="bg-white rounded p-6 md:p-10 relative">
@@ -63,6 +57,7 @@ export default async function Page() {
           </div>
         </div>
       </section>
+      */}
     </>
   );
 }

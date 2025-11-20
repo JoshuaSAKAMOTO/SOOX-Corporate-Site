@@ -1,5 +1,4 @@
 import type { Category } from '@/app/_libs/microcms';
-import styles from './index.module.css';
 
 type Props = {
   category?: Category;
@@ -9,5 +8,9 @@ export default function Category({ category }: Props) {
   if (!category) {
     return null;
   }
-  return <span className={styles.tag}>{category.name}</span>;
+  return (
+    <span className="bg-[#f3f3f3] px-3 py-1 rounded whitespace-nowrap text-base">
+      {category.name}
+    </span>
+  );
 }
