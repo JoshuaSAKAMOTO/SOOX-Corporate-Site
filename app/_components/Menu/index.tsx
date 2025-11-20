@@ -2,48 +2,46 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import cx from 'classnames';
-import styles from './index.module.css';
 
 export default function Menu() {
   const [isOpen, setOpen] = useState<boolean>(false);
   const open = () => setOpen(true);
   const close = () => setOpen(false);
+
   return (
     <div>
-      <nav className={cx(styles.nav, isOpen && styles.open)}>
-        <ul className={styles.items}>
+      <nav
+        className={`${
+          isOpen
+            ? 'block fixed top-0 left-0 right-0 bottom-0 bg-[#333] text-white p-6 md:p-6'
+            : 'hidden'
+        } md:block md:relative md:bg-transparent md:p-0`}
+      >
+        <ul className="flex flex-col gap-6 text-white md:flex-row md:gap-10">
           <li>
-            <Link href="/news" onClick={close}>
+            <Link href="/about" onClick={close} className="hover:opacity-70 transition-opacity">
+              About
+            </Link>
+          </li>
+          <li>
+            <Link href="/news" onClick={close} className="hover:opacity-70 transition-opacity">
               ニュース
             </Link>
           </li>
           <li>
-            <Link href="/business" onClick={close}>
-              事業内容
-            </Link>
-          </li>
-          <li>
-            <Link href="/members" onClick={close}>
-              メンバー
-            </Link>
-          </li>
-          <li>
-            <Link href="" onClick={close}>
-              採用情報
-            </Link>
-          </li>
-          <li>
-            <Link href="/contact" onClick={close}>
+            <Link href="/contact" onClick={close} className="hover:opacity-70 transition-opacity">
               お問い合わせ
             </Link>
           </li>
         </ul>
-        <button className={cx(styles.button, styles.close)} onClick={close}>
+        <button
+          className="absolute top-6 right-4 flex bg-transparent border-none cursor-pointer md:hidden"
+          onClick={close}
+        >
           <Image src="/close.svg" alt="閉じる" width={24} height={24} priority />
         </button>
       </nav>
-      <button className={styles.button} onClick={open}>
+      <button className="flex bg-transparent border-none cursor-pointer md:hidden" onClick={open}>
         <Image src="/menu.svg" alt="メニュー" width={24} height={24} priority />
       </button>
     </div>
