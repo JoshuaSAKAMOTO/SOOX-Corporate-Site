@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 function validateEmail(email: string) {
   const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return pattern.test(email);
@@ -51,6 +49,9 @@ export async function POST(request: NextRequest) {
   }
 
   try {
+    // Initialize Resend with API key
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
     // Send notification email to company
     const companyEmail = await resend.emails.send({
       from: process.env.FROM_EMAIL || 'onboarding@resend.dev',
