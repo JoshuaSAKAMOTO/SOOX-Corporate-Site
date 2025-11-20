@@ -9,7 +9,7 @@ export default function Header() {
         <Image
           src="/logo-white.png"
           alt="SOOX"
-          className="h-16 w-auto md:h-20"
+          className="h-24 w-auto md:h-32"
           width={348}
           height={133}
           priority
