@@ -1,6 +1,5 @@
 'use client';
 import React, { useRef, useState } from 'react';
-import styles from './index.module.css';
 
 export default function ContactForm() {
   const lastnameRef = useRef<HTMLInputElement>(null);
@@ -33,7 +32,7 @@ export default function ContactForm() {
   };
   if (success) {
     return (
-      <p className={styles.success}>
+      <p className="text-center text-lg leading-relaxed">
         お問い合わせいただき、ありがとうございます。
         <br />
         お返事まで今しばらくお待ちください。
@@ -41,42 +40,70 @@ export default function ContactForm() {
     );
   }
   return (
-    <form className={styles.form} onSubmit={onSubmit}>
-      <div className={styles.horizontal}>
-        <div className={styles.item}>
-          <label className={styles.label} htmlFor="lastname">
+    <form className="max-w-3xl mx-auto" onSubmit={onSubmit}>
+      <div className="flex gap-6 mb-6 md:flex-row flex-col">
+        <div className="flex-1">
+          <label className="block mb-2 font-bold" htmlFor="lastname">
             姓
           </label>
-          <input className={styles.textfield} type="text" id="lastname" ref={lastnameRef} />
+          <input
+            className="w-full px-4 py-3 border border-[#ddd] rounded focus:outline-none focus:border-[#333]"
+            type="text"
+            id="lastname"
+            ref={lastnameRef}
+          />
         </div>
-        <div className={styles.item}>
-          <label className={styles.label} htmlFor="firstname">
+        <div className="flex-1">
+          <label className="block mb-2 font-bold" htmlFor="firstname">
             名
           </label>
-          <input className={styles.textfield} type="text" id="firstname" ref={firstnameRef} />
+          <input
+            className="w-full px-4 py-3 border border-[#ddd] rounded focus:outline-none focus:border-[#333]"
+            type="text"
+            id="firstname"
+            ref={firstnameRef}
+          />
         </div>
       </div>
-      <div className={styles.item}>
-        <label className={styles.label} htmlFor="conpany">
+      <div className="mb-6">
+        <label className="block mb-2 font-bold" htmlFor="company">
           会社名
         </label>
-        <input className={styles.textfield} type="text" id="company" ref={companyRef} />
+        <input
+          className="w-full px-4 py-3 border border-[#ddd] rounded focus:outline-none focus:border-[#333]"
+          type="text"
+          id="company"
+          ref={companyRef}
+        />
       </div>
-      <div className={styles.item}>
-        <label className={styles.label} htmlFor="email">
+      <div className="mb-6">
+        <label className="block mb-2 font-bold" htmlFor="email">
           メールアドレス
         </label>
-        <input className={styles.textfield} type="text" id="email" ref={emailRef} />
+        <input
+          className="w-full px-4 py-3 border border-[#ddd] rounded focus:outline-none focus:border-[#333]"
+          type="text"
+          id="email"
+          ref={emailRef}
+        />
       </div>
-      <div className={styles.item}>
-        <label className={styles.label} htmlFor="message">
+      <div className="mb-6">
+        <label className="block mb-2 font-bold" htmlFor="message">
           メッセージ
         </label>
-        <textarea className={styles.textarea} id="message" ref={messageRef} />
+        <textarea
+          className="w-full px-4 py-3 border border-[#ddd] rounded min-h-[200px] focus:outline-none focus:border-[#333]"
+          id="message"
+          ref={messageRef}
+        />
       </div>
-      <div className={styles.actions}>
-        <p className={styles.error}>{error}</p>
-        <input type="submit" value="送信する" className={styles.button} />
+      <div className="text-center">
+        {error && <p className="text-red-500 mb-4">{error}</p>}
+        <input
+          type="submit"
+          value="送信する"
+          className="px-10 py-4 bg-[#333] text-white rounded cursor-pointer hover:opacity-90 transition-opacity"
+        />
       </div>
     </form>
   );
