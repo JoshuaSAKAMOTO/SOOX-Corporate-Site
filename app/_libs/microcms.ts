@@ -50,22 +50,33 @@ export type Meta = {
 
 export type Article = News & MicroCMSContentId & MicroCMSDate;
 
-if (!process.env.MICROCMS_SERVICE_DOMAIN) {
-  throw new Error('MICROCMS_SERVICE_DOMAIN is required');
-}
+// Lazy client initialization
+let clientInstance: ReturnType<typeof createClient> | null = null;
 
-if (!process.env.MICROCMS_API_KEY) {
-  throw new Error('MICROCMS_API_KEY is required');
-}
+const getClient = () => {
+  if (clientInstance) {
+    return clientInstance;
+  }
 
-// Initialize Client SDK.
-export const client = createClient({
-  serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN,
-  apiKey: process.env.MICROCMS_API_KEY,
-});
+  if (!process.env.MICROCMS_SERVICE_DOMAIN) {
+    throw new Error('MICROCMS_SERVICE_DOMAIN is required');
+  }
+
+  if (!process.env.MICROCMS_API_KEY) {
+    throw new Error('MICROCMS_API_KEY is required');
+  }
+
+  clientInstance = createClient({
+    serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN,
+    apiKey: process.env.MICROCMS_API_KEY,
+  });
+
+  return clientInstance;
+};
 
 // ニュース一覧を取得
 export const getNewsList = async (queries?: MicroCMSQueries) => {
+  const client = getClient();
   const listData = await client
     .getList<News>({
       endpoint: 'news',
@@ -77,6 +88,7 @@ export const getNewsList = async (queries?: MicroCMSQueries) => {
 
 // ニュースの詳細を取得
 export const getNewsDetail = async (contentId: string, queries?: MicroCMSQueries) => {
+  const client = getClient();
   const detailData = await client
     .getListDetail<News>({
       endpoint: 'news',
@@ -90,6 +102,7 @@ export const getNewsDetail = async (contentId: string, queries?: MicroCMSQueries
 
 // カテゴリーの一覧を取得
 export const getCategoryList = async (queries?: MicroCMSQueries) => {
+  const client = getClient();
   const listData = await client
     .getList<Category>({
       endpoint: 'categories',
@@ -102,6 +115,7 @@ export const getCategoryList = async (queries?: MicroCMSQueries) => {
 
 // カテゴリーの詳細を取得
 export const getCategoryDetail = async (contentId: string, queries?: MicroCMSQueries) => {
+  const client = getClient();
   const detailData = await client
     .getListDetail<Category>({
       endpoint: 'categories',
@@ -115,6 +129,7 @@ export const getCategoryDetail = async (contentId: string, queries?: MicroCMSQue
 
 // メンバー一覧を取得
 export const getMembersList = async (queries?: MicroCMSQueries) => {
+  const client = getClient();
   const listData = await client
     .getList<Member>({
       endpoint: 'members',
@@ -126,6 +141,7 @@ export const getMembersList = async (queries?: MicroCMSQueries) => {
 
 // 事業内容一覧を取得
 export const getBusinessList = async (queries?: MicroCMSQueries) => {
+  const client = getClient();
   const listData = await client
     .getList<Business>({
       endpoint: 'business',
@@ -137,6 +153,7 @@ export const getBusinessList = async (queries?: MicroCMSQueries) => {
 
 // メタ情報を取得
 export const getMeta = async (queries?: MicroCMSQueries) => {
+  const client = getClient();
   const data = await client
     .getObject<Meta>({
       endpoint: 'meta',
